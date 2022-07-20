@@ -23,7 +23,7 @@ public class StudentServicesImplements implements StudentServices{
 
     @Override
     public ResponseEntity<ResponseObject> findByEmail(String email) {
-        List<Student> student = repository.findStudentByEmail(email);
+        List<Student> student = repository.findStudentByEmailContaining(email);
         return !student.isEmpty() ?
                 ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObject("ok" , "query successfully" ,student))
