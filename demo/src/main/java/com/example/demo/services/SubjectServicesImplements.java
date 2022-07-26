@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.dto.dtoSubjectCountSem;
 import com.example.demo.entities.ResponseObject;
 import com.example.demo.entities.Subjects;
 import com.example.demo.repository.SubjectRepository;
@@ -102,6 +103,7 @@ public class SubjectServicesImplements implements SubjectServices{
 
     @Override
     public ResponseEntity<ResponseObject> countSemSubject() {
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("ok" ,"count by sem" , subject.countBySem()));
+        List<dtoSubjectCountSem> count =  subject.countBySem();
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("ok" ,"count by sem" , count));
     }
 }

@@ -1,32 +1,22 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.Product;
-import com.example.demo.entities.ResponseObject;
+import com.example.demo.dto.dtoStudent;
 import com.example.demo.entities.Student;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentServices{
 
-    List<?> getAllStudent();
-    ResponseEntity<ResponseObject> findByEmail(String email);
-
-    ResponseEntity<ResponseObject> findBySodt(String sdt);
-
-    ResponseEntity<ResponseObject> findByDiachi(String diachi);
-
-    ResponseEntity<?> findById(Long id);
+List<dtoStudent> findDtoStudent();
 
 
-    ResponseEntity<?> findByName(String name);
+Optional<Student> searchStudentById(Long id);
 
+Student insertStudent(Student newStudent);
 
-    ResponseEntity<?> insertStudent(Student student);
+boolean removeStudentByid(Long id);
 
-    ResponseEntity<?> updateStudent(Long id , Student newStudent);
-
-    ResponseEntity<?> deleteStudent(Long id);
-
+List<Student> searchByName(String name);
 
 }

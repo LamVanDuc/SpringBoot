@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>insert Form</h1>
+    <a href="student"> home student</a>
+    <div id="message"></div>
+        <from>
+            <p>name : <input type="text" id="name"></p>
+            <p>address : <input type="text" id="address"></p>
+            <p>phone : <input type="number" id="phoneNumber"></p>
+            <p>email : <input type="email" id="email"></p>
+            <p>class id : <input type="number" id="classid"></p>
+            <input type="submit" value="Đăng ký" onclick="insert()">
+        </from>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script>
+    <script>
+        function insert(){
+            var datareponse = {name : $("#name").val(),
+                address :$("#address").val(),
+                phoneNumber : $("#phoneNumber").val(),
+                email : $("#email").val(),
+                classid: $("#classid").val(),
+            };
+            $.ajax({
+                url: "/api/v1/student/insert",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data:JSON.stringify(datareponse),
+                success: function (response) {
+                    alert(response.status+"\n"+response.message);
+                },
+                error: function (err) {
+                    alert(err.status+"\n"+err.message);
+                }
+            }); // ajax call closing
+        }
+    </script>
+
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 package com.example.demo.entities;
 
-public class ResponseObject {
+public class ResponseObject{
     private String status;
     private String message;
     private Object data;

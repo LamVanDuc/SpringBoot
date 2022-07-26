@@ -1,6 +1,9 @@
 package com.example.demo.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "product")
@@ -9,13 +12,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "khong duoc null")
+    @NotBlank(message = "khong duoc blank")
     @Column(name = "proName")
     private String proName;
 
+    @NotNull(message = "product description is not null")
+    @NotBlank(message = "enter the product description")
     @Column(name = "proDesc")
     private String proDesc;
 
-
+    @Min(value = -1 , message = "khong nhap so am vao day")
+    @NotNull(message = "price is not null")
+    @NotBlank(message = "enter the product price")
     @Column(name = "price")
     private double price;
 
