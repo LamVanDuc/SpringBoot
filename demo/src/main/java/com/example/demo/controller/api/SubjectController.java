@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.api;
 
 import com.example.demo.entities.ResponseObject;
 import com.example.demo.entities.Subjects;

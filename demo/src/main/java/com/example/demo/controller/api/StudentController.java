@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.api;
 import com.example.demo.dto.ListStudent;
 import com.example.demo.entities.ResponseObject;
 import com.example.demo.entities.Student;
@@ -18,15 +18,25 @@ public class StudentController {
     @GetMapping("")
     ListStudent getAllStudent(){
         ListStudent list = new ListStudent();
-        list.setData(student.findDtoStudent());
+        list.setData(student.getAllStudent());
         return list;
     }
 
+
     @GetMapping("/get")
-    ResponseEntity<ResponseObject> searchStudentBtId(@RequestParam(value = "id")Long id){
+    ResponseEntity<ResponseObject> searchStudentById(@RequestParam(value = "id")Long id){
         Optional<Student> std = student.searchStudentById(id);
         if (!std.isEmpty() || !std.isPresent()){
           return   ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("ok","query successfully",std));
+        }
+        return   ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseObject("false","Cannot find student by id = "+id,std));
+    }
+
+    @GetMapping("/get/{id}")
+    ResponseEntity<ResponseObject> searchbyId(@PathVariable Long id){
+        Optional<Student> std = student.searchStudentById(id);
+        if (!std.isEmpty() || !std.isPresent()){
+            return   ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("ok","query successfully",std));
         }
         return   ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseObject("false","Cannot find student by id = "+id,std));
     }
@@ -47,10 +57,24 @@ public class StudentController {
         }
     }
 
+    @PutMapping("/update/{id}")
+    ResponseEntity<ResponseObject> updateStudentByid(@RequestBody Student newStudent,@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok","update successfully",student.updateStudent(id,newStudent)));
+    }
 
 
+    @PutMapping("/update")
+    ResponseEntity<ResponseObject> updateStudent(@RequestBody Student newStudent,@RequestParam(value = "id") Long id ){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok","update successfully",student.updateStudent(id,newStudent)));
+    }
 
 
+    @GetMapping("/detail/{id}")
+    ResponseEntity<ResponseObject> detailStudent(){
+        return  null;
+    }
 
 
 }

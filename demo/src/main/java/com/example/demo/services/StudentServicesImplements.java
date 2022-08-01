@@ -14,13 +14,17 @@ public class StudentServicesImplements implements StudentServices{
 
 
     @Override
+    public List<Student> getAllStudent(){
+        return repository.findAll();
+    }
+
+    @Override
     public List<dtoStudent> findDtoStudent() {
         return repository.findAllWithDtoStudent();
     }
 
     @Override
     public Optional<Student> searchStudentById(Long id) {
-
         return repository.findById(id);
     }
 
@@ -43,4 +47,21 @@ public class StudentServicesImplements implements StudentServices{
     public List<Student> searchByName(String name) {
         return repository.findStudentByName(name);
     }
+
+    @Override
+    public Student updateStudent(Long id, Student newStudent) {
+        Student student = repository.findById(id).map(std->{
+            std.setName(newStudent.getName());
+            std.setAddress(newStudent.getAddress());
+            std.setEmail(newStudent.getEmail());
+            std.setPhoneNumber(newStudent.getPhoneNumber());
+            return  repository.save(std);
+        }).orElseGet(()->{
+            newStudent.setId(id);
+            return repository.save(newStudent);
+        });
+        return student;
+    }
+
+
 }

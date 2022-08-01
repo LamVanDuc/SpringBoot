@@ -19,4 +19,8 @@ boolean removeStudentByid(Long id);
 
 List<Student> searchByName(String name);
 
+
+ Student updateStudent(Long id,Student newStudent);
+
+ List<Student> getAllStudent();
 }

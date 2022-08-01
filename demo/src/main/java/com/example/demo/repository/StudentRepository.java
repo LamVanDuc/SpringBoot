@@ -12,7 +12,7 @@ public interface StudentRepository extends JpaRepository<Student , Long> {
 
 
 
-    @Query("select new com.example.demo.dto.dtoStudent(s.name,s.address,s.phoneNumber,s.email,s.classid) from Student s")
+    @Query("select new com.example.demo.dto.dtoStudent(s.name,s.address,s.phoneNumber,s.email,s.tblclassByClassid.classid) from Student s")
     List<dtoStudent> findAllWithDtoStudent();
 
 

@@ -5,13 +5,13 @@ import com.example.demo.entities.Student;
 import java.util.List;
 
 public class ListStudent {
-    private List<dtoStudent>  data;
+    private List<Student>  data;
 
-    public List<dtoStudent> getData() {
+    public List<Student> getData() {
         return data;
     }
 
-    public void setData(List<dtoStudent> data) {
+    public void setData(List<Student> data) {
         this.data = data;
     }
 }

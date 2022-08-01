@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Data
@@ -41,13 +40,14 @@ public class Student {
 //    private Student studentById;
 //    @OneToOne(mappedBy = "studentById")
 //    private Student studentById_0;
-//    @ManyToOne
-//    @JoinColumn(name = "classid", referencedColumnName = "classid")
-//    private Tblclass tblclassByClassid;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "classid", referencedColumnName = "classid")
+    private Tblclass tblclassByClassid;
 
-    @Basic
-    @Column(name = "classid")
-    private Integer classid;
+//    @Basic
+//    @Column(name = "classid")
+//    private Integer classid;
 
     @JsonIgnore
     @OneToMany(mappedBy = "studentByIdStudent")
@@ -135,34 +135,34 @@ public class Student {
         this.email = email;
     }
 
-//    public Tblclass getTblclassByClassid() {
-//        return tblclassByClassid;
+    public Tblclass getTblclassByClassid() {
+        return tblclassByClassid;
+    }
+
+    public void setTblclassByClassid(Tblclass tblclassByClassid) {
+        this.tblclassByClassid = tblclassByClassid;
+    }
+
+//    public Integer getClassid() {
+//        return classid;
 //    }
 //
-//    public void setTblclassByClassid(Tblclass tblclassByClassid) {
-//        this.tblclassByClassid = tblclassByClassid;
+//    public void setClassid(Integer classid) {
+//        this.classid = classid;
 //    }
 
-    public Integer getClassid() {
-        return classid;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Student student = (Student) o;
+//        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(address, student.address) && Objects.equals(phoneNumber, student.phoneNumber) && Objects.equals(email, student.email) && Objects.equals(classid, student.classid);
+//    }
 
-    public void setClassid(Integer classid) {
-        this.classid = classid;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(address, student.address) && Objects.equals(phoneNumber, student.phoneNumber) && Objects.equals(email, student.email) && Objects.equals(classid, student.classid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, address, phoneNumber, email, classid);
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, address, phoneNumber, email, classid);
+//    }
 
     public Collection<Marks> getMarksById() {
         return marksById;

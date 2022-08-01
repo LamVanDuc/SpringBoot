@@ -6,9 +6,9 @@ public class dtoStudent {
     private String address ;
     private String phoneNumber;
     private String email;
-    private int classid;
+    private Long classid;
 
-    public dtoStudent( String name, String address, String phoneNumber, String email, int classid) {
+    public dtoStudent( String name, String address, String phoneNumber, String email, Long classid) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -51,11 +51,11 @@ public class dtoStudent {
         this.email = email;
     }
 
-    public int getClassid() {
+    public Long getClassid() {
         return classid;
     }
 
-    public void setClassid(int classid) {
+    public void setClassid(Long classid) {
         this.classid = classid;
     }
 
